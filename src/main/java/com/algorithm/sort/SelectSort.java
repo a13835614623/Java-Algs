@@ -4,7 +4,8 @@ import com.algorithm.array.util.ArrayUtil;
 
 /**
  * 选择排序
- *
+ * 时间复杂度：O(n^2)
+ * 空间复杂度: O(1)
  * @Author: zzk
  * @Date: 2020-03-05 17:42
  */
@@ -22,7 +23,6 @@ public class SelectSort {
                     ArrayUtil.swap(nums, j, i);
                 }
             }
-
         }
     }
 

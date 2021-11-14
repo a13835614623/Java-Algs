@@ -4,7 +4,8 @@ import com.algorithm.array.util.ArrayUtil;
 
 /**
  * 归并排序
- *
+ * 时间复杂度：O(n*lg(n))
+ * 空间复杂度: O(n)
  * @Author: zzk
  * @Date: 2020-03-05 17:44
  */

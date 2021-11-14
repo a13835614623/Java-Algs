@@ -4,7 +4,8 @@ import com.algorithm.array.util.ArrayUtil;
 
 /**
  * 堆排序
- *
+ * 时间复杂度：O(n*lg(n))
+ * 空间复杂度: O(1)
  * @Author: zzk
  * @Date: 2020-03-05 20:17
  */
@@ -34,7 +35,8 @@ public class HeapSort {
      */
     public static void adjustHeap(int[] arr, int p, int length) {
         int parent = arr[p];//先取出当前元素i
-        for (int child = leftChild(p); child < length; child = leftChild(child)) {//从i结点的左子结点开始，也就是2i+1处开始
+        //从i结点的左子结点开始，也就是2i+1处开始
+        for (int child = leftChild(p); child < length; child = leftChild(child)) {
             if (child + 1 < length && arr[child] < arr[child + 1]) {//如果左子结点小于右子结点，k指向右子结点
                 child++;
             }

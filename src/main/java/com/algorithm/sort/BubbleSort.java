@@ -2,11 +2,10 @@ package com.algorithm.sort;
 
 import com.algorithm.array.util.ArrayUtil;
 
-import java.util.Arrays;
-
 /**
  * 冒泡排序
- *
+ * 时间复杂度：O(n^2)
+ * 空间复杂度: O(1)
  * @Author: zzk
  * @Date: 2020-03-05 17:25
  */

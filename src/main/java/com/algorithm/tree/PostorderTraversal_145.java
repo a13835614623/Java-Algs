@@ -1,8 +1,5 @@
 package com.algorithm.tree;
 
-import jdk.nashorn.internal.ir.IfNode;
-import sun.reflect.generics.tree.Tree;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
