@@ -138,11 +138,11 @@ public class RedBlackTreeNode<T extends Comparable> {
                     } else {
                         rotateLeft(brotherNearChild);
                     }
-                } else if (parent.isRed() && brother != null && brother.isBlack()&&brother.isLeaf()) {
+                } else if (parent.isRed() && brother != null && brother.isBlack() && brother.isLeaf()) {
                     // 2.4 父亲节p为红色，兄弟节点和兄弟节点的两个孩子（只能是NULL节点）都为黑色的情况
                     parent.setBlack();
                     brother.setRed();
-                }else {
+                } else {
                     // 2.5 父亲节点p，兄弟节点s和兄弟节点的两个孩子（只能为NULL节点）都为黑色的情况
                     assert brother != null;
                     brother.setRed();
@@ -205,77 +205,131 @@ public class RedBlackTreeNode<T extends Comparable> {
     /**
      * 通过旋转和重新着色等方法修正该树，使之重新成为一棵红黑树
      *
-     * @param node 被插入的节点
+     * @param x 被插入的节点
      */
-    public void balance(RedBlackTreeNode<T> node) {
-        RedBlackTreeNode<T> parentNode = node.getParent();
+    public void balance(RedBlackTreeNode<T> x) {
+        RedBlackTreeNode<T> xp = x.getParent();
         // 1.被插入的节点是根节点
-        if (parentNode == null) {
+        if (xp == null) {
             // 将根节点变为黑色
-            node.setBlack();
-        } else if (parentNode.isBlack()) {//被插入节点的父节点是红色,
+            x.setBlack();
+        } else if (xp.isBlack()) {
+            //被插入节点的父节点是红色,
             // 2.被插入的节点的父节点是红色，违反规则4:如果一个节点是红色的，则其子节点必须是黑色的
             // 祖父节点
-            RedBlackTreeNode<T> grandNode = parentNode.getParent();
-            RedBlackTreeNode<T> grandLeft = parentNode.getParent();
-            RedBlackTreeNode<T> grandRight = parentNode.getParent();
+            RedBlackTreeNode<T> xpp = xp.getParent();
+            RedBlackTreeNode<T> xppl = xpp.left;
+            RedBlackTreeNode<T> xppr = xpp.right;
             // 叔叔节点
-            RedBlackTreeNode<T> uncleNode = grandLeft == parentNode ? grandRight : grandLeft;
+            RedBlackTreeNode<T> uncleNode = xppl == xp ? xppr : xppl;
             // 3.如果叔叔节点为红色
             if (uncleNode != null && uncleNode.isRed()) {
-                grandNode.setRed();
+                xpp.setRed();
                 uncleNode.setBlack();
-                parentNode.setBlack();
+                xp.setBlack();
                 // 对祖父节点作为当前节点 重新进行平衡操作
-                balance(grandNode);
+                balance(xpp);
             } else if (uncleNode == null || uncleNode.isBlack()) {
                 // 4.叔叔节点为黑色或缺失，且当前节点是曲线边 (即左右或右左)
                 // 如果是曲线边
-                if (grandLeft != null && grandLeft.getRight() == node) {
-                    rotateLeft(parentNode);
-                    balance(parentNode);
-                } else if(grandRight != null && grandRight.getLeft() == node){
-                    rotateRight(parentNode);
-                    balance(parentNode);
-                }else{
+                if (xppl != null && xppl.getRight() == x) {
+                    rotateLeft(xp);
+                    balance(xp);
+                } else if (xppr != null && xppr.getLeft() == x) {
+                    rotateRight(xp);
+                    balance(xp);
+                } else {
                     // 5.叔叔节点为黑色或缺失，且当前节点是在外边(即左左或右右)
-                    parentNode.setBlack();
-                    grandNode.setRed();
-                    rotateRight(grandNode);
+                    xp.setBlack();
+                    xpp.setRed();
+                    rotateRight(xpp);
                 }
             }
-
         }
     }
 
     /**
-     * 左旋
+     * 对红黑树的节点(x)进行左旋转
+     *
+     * 左旋示意图(对节点x进行左旋)：
+     *      px                              px
+     *     /                               /
+     *    x                               y
+     *   /  \      --(左旋)-.           / \                #
+     *  lx   y                          x  ry
+     *     /   \                       /  \
+     *    ly   ry                     lx  ly
+     *
      */
-    public void rotateLeft(RedBlackTreeNode<T> node) {
-        RedBlackTreeNode<T> right = node.getRight();
-        RedBlackTreeNode<T> parent = node.getParent();
-        if (parent.getLeft() == node) {
-            parent.setLeft(right);
-        } else {
-            parent.setRight(right);
+    public static <T extends Comparable> void rotateLeft(RedBlackTreeNode<T> x) {
+        RedBlackTreeNode<T> y = x.getRight();
+        // 将右节点的左孩子设置为x的右节点
+        RedBlackTreeNode<T> yl = y.getLeft();
+        if (yl != null) {
+            x.setRight(yl);
         }
-        node.setRight(right.getLeft());
-        right.setLeft(node);
+        // 将 “x的父亲” 设为 “y的父亲”
+        RedBlackTreeNode<T> px = x.getParent();
+        y.setParent(px);
+        if (px == null) {
+            // 如果 “x的父亲” 是空节点，则将y设为根节点
+            x.setParent(y);
+        } else {
+            if (px.getLeft() == x) {
+                // 如果 x是它父节点的左孩子，则将y设为“x的父节点的左孩子”
+                px.setLeft(y);
+            } else {
+                // 如果 x是它父节点的左孩子，则将y设为“x的父节点的左孩子”
+                px.setRight(y);
+            }
+        }
+        // 将 “x” 设为 “y的左孩子”
+        y.setLeft(x);
+        // 将 “x的父节点” 设为 “y”
+        x.setParent(y);
     }
 
     /**
      * 右旋
+     * 对红黑树的节点(y)进行右旋转
+     *
+     * 右旋示意图(对节点y进行左旋)：
+     *            py                               py
+     *           /                                /
+     *          y                                x
+     *         /  \      --(右旋)-.            /  \                     #
+     *        x   ry                           lx   y
+     *       / \                                   / \                   #
+     *      lx  rx                                rx  ry
      */
-    public void rotateRight(RedBlackTreeNode<T> node) {
-        RedBlackTreeNode<T> left = node.getLeft();
-        RedBlackTreeNode<T> parent = node.getParent();
-        if (parent.getLeft() == node) {
-            parent.setLeft(left);
-        } else {
-            parent.setRight(left);
+    public void rotateRight(RedBlackTreeNode<T> y) {
+        // 设置x是当前节点的左孩子。
+        RedBlackTreeNode<T> x = y.getLeft();
+        y.setLeft(x.getRight());
+        if (x.getRight() != null) {
+            x.getRight().setParent(y);
         }
-        node.setLeft(left.getRight());
-        left.setRight(node);
+        // 将 “x的右孩子” 设为 “y的左孩子”；
+        // 如果"x的右孩子"不为空的话，将 “y” 设为 “x的右孩子的父亲”
+        RedBlackTreeNode<T> yp = y.getParent();
+        x.setParent(yp);
+
+        if (yp == null) {
+            // 如果 “y的父亲” 是空节点，则将x设为根节点
+            y.setParent(x);
+        } else {
+            if (y == yp.getRight()) {
+                // 如果 y是它父节点的右孩子，则将x设为“y的父节点的右孩子”
+                yp.setRight(x);
+            }else {
+                // (y是它父节点的左孩子) 将x设为“x的父节点的左孩子”
+                yp.setLeft(x);
+            }
+        }
+        // 将 “y” 设为 “x的右孩子”
+        x.setRight(y);
+        // 将 “y的父节点” 设为 “x”
+        y.setParent(x);
     }
 
     /**

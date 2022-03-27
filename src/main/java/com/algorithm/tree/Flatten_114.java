@@ -1,9 +1,5 @@
 package com.algorithm.tree;
 
-import sun.reflect.generics.tree.Tree;
-
-import java.util.Stack;
-
 /**
  * 给定一个二叉树，原地将它展开为链表。
  * <p>

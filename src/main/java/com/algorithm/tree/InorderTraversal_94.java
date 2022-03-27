@@ -1,7 +1,5 @@
 package com.algorithm.tree;
 
-import sun.reflect.generics.tree.Tree;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;

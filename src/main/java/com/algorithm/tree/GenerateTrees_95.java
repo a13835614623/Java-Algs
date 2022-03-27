@@ -1,12 +1,8 @@
 package com.algorithm.tree;
 
-import com.algorithm.array.util.ArrayUtil;
-import sun.reflect.generics.tree.Tree;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * 给定一个整数 n，生成所有由 1 ... n 为节点所组成的二叉搜索树。

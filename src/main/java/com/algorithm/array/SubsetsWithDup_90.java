@@ -1,9 +1,7 @@
 package com.algorithm.array;
 
-import com.algorithm.LengthOfLongestSubstring_3;
-import sun.security.provider.Sun;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**

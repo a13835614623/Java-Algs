@@ -1,7 +1,5 @@
 package com.algorithm;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 /**
  * KMP算法
  *
