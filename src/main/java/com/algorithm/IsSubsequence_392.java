@@ -65,19 +65,38 @@ public class IsSubsequence_392 {
             if (len1 > len2) {
                 return false;
             }
+            // dp[i][j] 代表字符串t从位置i开始 字母j第一次出现的位置
+            int[][] dp = new int[len2 + 1][26];
+            for (int i = 0; i < 26; i++) {
+                dp[len2][i] = len2;
+            }
+            for (int i = len2 - 1; i >= 0; i--) {
+                int c = t.charAt(i) - 'a';
+                for (int j = 1; j < 26; j++) {
+                    if (c != j) {
+                        dp[i][j] = dp[i + 1][j];
+                    } else {
+                        dp[i][c] = i;
+                    }
+                }
+            }
+
             int i = 0, j = 0;
-            while (j < len2) {
-                if (i < len1 && s.charAt(i) == t.charAt(j)) {
+            while (i < len1) {
+                int index = dp[j][s.charAt(i) - 'a'];
+                if (index == len2) {
+                    return false;
+                } else {
+                    j = index+1;
                     i++;
                 }
-                j++;
             }
-            return i == len1;
+            return true;
         }
     }
 
     public static void main(String[] args) {
         Solution x = new Solution();
-        System.out.println(x.isSubsequence("aaa", "aab"));
+        System.out.println(x.isSubsequence2("abc", "ahbgdc"));
     }
 }

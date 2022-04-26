@@ -28,17 +28,17 @@ package com.algorithm.dynamic;
  */
 public class Rob_198 {
     public static int rob(int[] nums) {
-        if (nums == null || nums.length == 0) return 0;
         int len = nums.length;
-        int[] dp = new int[len];
+        int[] dp = new int[len + 1];
         dp[0] = nums[0];
-        if (len > 1) {
-            dp[1] = Math.max(nums[0], nums[1]);
+        if (len == 1) {
+            return dp[0];
         }
-        for (int i = 2; i < len; i++) {
+        dp[1] = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < len ; i++) {
             dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
         }
-        return dp[len - 1];
+        return dp[len-1];
     }
 
     public static int rob2(int[] nums) {
@@ -55,7 +55,7 @@ public class Rob_198 {
     }
 
     public static void main(String[] args) {
-        int[] nums = {2, 7, 9, 3, 1};
-        System.out.println(rob2(nums));
+        int[] nums = {1,2,3,1};
+        System.out.println(rob(nums));
     }
 }

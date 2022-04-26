@@ -48,6 +48,26 @@ public class Rob_213 {
         return Math.max(cur1, cur2);
     }
 
+    public static int rob2(int[] nums) {
+        int len = nums.length;
+        int[] dp = new int[len + 1];
+        dp[0] = nums[0];
+        if (len == 1) {
+            return dp[0];
+        }
+        dp[1] = Math.max(nums[0], nums[1]);
+        if (len % 2 == 0) {
+            for (int i = 2; i < len; i++) {
+                dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+            }
+        }else {
+            for (int i = 2; i < len; i++) {
+                dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+            }
+        }
+        return dp[len - 1];
+    }
+
     public static void main(String[] args) {
         System.out.println(rob(new int[]{1, 2, 3, 1}));
         System.out.println(rob(new int[]{2, 3, 2}));
