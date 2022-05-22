@@ -26,8 +26,8 @@ public class MapDfs {
             if (!accessSet.contains(top)) {
                 accessSet.add(top);
                 System.out.println(top);
+                // 获取栈顶元素的邻接点
             }
-            // 获取栈顶元素的邻接点
             int[] nodes = map[top];
             // 查找第一个没被访问过的邻接点,入栈
             for (int i = 0; i < nodes.length; i++) {

@@ -124,33 +124,33 @@ public class TreeNum_15 {
 		Arrays.sort(nums);
 		List<List<Integer>> result = new LinkedList<>();// 结果集
 		List<Integer> list = null;
-		for (int i = 0; i < nums.length; i++) {
-			int k = nums.length - 1;// 第三个数
-			int j = i + 1;// 第二个数的索引
-			while (j < k) {// 寻找第二个数
-				int sum = nums[i] + nums[k];// 第一个和第三个数之和
-				if (nums[j] == -sum) {// 找到，添加
+		for (int first = 0; first < nums.length; first++) {
+			int third = nums.length - 1;// 第三个数
+			int second = first + 1;// 第二个数的索引
+			while (second < third) {// 寻找第二个数
+				int sum = nums[first] + nums[third];// 第一个和第三个数之和
+				if (nums[second] == -sum) {// 找到，添加
 					list = new LinkedList<>();
-					list.add(nums[i]);
-					list.add(nums[j]);
-					list.add(nums[k]);
+					list.add(nums[first]);
+					list.add(nums[second]);
+					list.add(nums[third]);
 					result.add(list);
-					while (j < k && nums[j] == nums[j + 1]) {
-						j++;
+					while (second < third && nums[second] == nums[second + 1]) {
+						second++;
 					}
-					while (i < j && nums[i] == nums[i + 1]) {
-						i++;
+					while (first < second && nums[first] == nums[first + 1]) {
+						first++;
 					}
-					while (j < k && nums[k] == nums[k - 1]) {
-						k--;
+					while (second < third && nums[third] == nums[third - 1]) {
+						third--;
 					}
-					j++;
-					k--;
+					second++;
+					third--;
 				} else {
-					if (nums[j] + sum < 0) {
-						j++;
+					if (nums[second] + sum < 0) {
+						second++;
 					} else {
-						k--;
+						third--;
 					}
 				}
 			}

@@ -24,27 +24,26 @@ import java.util.Arrays;
  * @date: 2019-05-06 20:35
  */
 public class TwoSum_167 {
-	public static int[] twoSum(int[] nums, int target) {
-		int[] results = new int[2];
-		int sum=0;
-		for (int i = 0,j=nums.length-1; i<j;) {
-			sum=nums[i]+nums[j];
-			if(sum==target){
-				nums[0]=i+1;
-				nums[1]=j+1;
-				return nums;
-			}
-			if(sum>target){
-				j--;
-			}else {
-				i++;
-			}
-		}
-		return results;
-	}
-	public static void main(String[] args) {
-		int[] arr = { 1,2, 7};
-		int[] a = twoSum(arr, 10);
-		System.out.println(a[0] + " " + a[1]);
-	}
+    public static int[] twoSum(int[] nums, int target) {
+        int length = nums.length;
+        int left = 0;
+        int right = length - 1;
+        while (left < right) {
+            int cmp = nums[left] + nums[right] - target;
+            if (cmp > 0) {
+                right--;
+            } else if (cmp == 0) {
+                return new int[]{left + 1, right + 1};
+            } else {
+                left++;
+            }
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {3, 5, 6, 7};
+        int[] a = twoSum(arr, 10);
+        System.out.println(a[0] + " " + a[1]);
+    }
 }

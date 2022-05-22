@@ -59,7 +59,7 @@ public class QuickSort {
     public static void main(String[] args) {
         int[] nums = ArrayUtil.randomArray(10);
         ArrayUtil.printArray(nums);
-        quickSort2(nums, 0, nums.length - 1);
+        quickSort(nums, 0, nums.length - 1);
         ArrayUtil.printArray(nums);
     }
 }
