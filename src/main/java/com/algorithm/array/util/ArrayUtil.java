@@ -10,20 +10,35 @@ public class ArrayUtil {
         System.out.println();
     }
 
-    public static void printArray2(int[][] arr) {
-        for (int[] is : arr) {
-            for (int i : is) {
-                System.out.printf("%4d", i);
+    public static <T> void printArray2(T[][] arr) {
+        for (T[] is : arr) {
+            for (T i : is) {
+                System.out.printf("%4s", i);
             }
             System.out.println();
         }
     }
-
-    public static int[] randomArray(int length){
+    public static void printArray2(char[][] arr) {
+        for (char[] is : arr) {
+            for (char i : is) {
+                System.out.printf("%4s", i);
+            }
+            System.out.println();
+        }
+    }
+    public static void printArray2(int[][] arr) {
+        for (int[] is : arr) {
+            for (int i : is) {
+                System.out.printf("%4s", i);
+            }
+            System.out.println();
+        }
+    }
+    public static int[] randomArray(int length) {
         Random random = new Random();
         int[] nums = new int[length];
-        for (int i = 0; i <length; i++) {
-            nums[i]=random.nextInt(length);
+        for (int i = 0; i < length; i++) {
+            nums[i] = random.nextInt(length);
         }
         return nums;
     }
@@ -38,10 +53,11 @@ public class ArrayUtil {
         System.out.println("-----------------------------");
         for (boolean[] is : arr) {
             for (boolean i : is) {
-                System.out.printf((i ? "√" : "X" )+ " ");
+                System.out.printf((i ? "√" : "X") + " ");
             }
             System.out.println();
         }
         System.out.println("-----------------------------");
     }
+
 }
