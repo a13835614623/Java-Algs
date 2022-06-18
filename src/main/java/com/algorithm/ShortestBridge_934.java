@@ -1,4 +1,4 @@
-package com;
+package com.algorithm;
 
 import com.algorithm.array.util.ArrayUtil;
 
