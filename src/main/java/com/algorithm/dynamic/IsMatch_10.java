@@ -51,22 +51,32 @@ public class IsMatch_10 {
         boolean[][] dp = new boolean[sLen + 1][pLen + 1];
         dp[0][0] = true;
         for (int i = 1; i <= sLen; i++) {
-            char sc = s.charAt(i - 1);
+            int lastI = i - 1;
+            char sc = s.charAt(lastI);
             for (int j = 1; j <= pLen; j++) {
-                char pc = p.charAt(j - 1);
+                int lastJ = j - 1;
+                char pc = p.charAt(lastJ);
                 if (sc == pc) {
-                    dp[i][j] = dp[i - 1][j - 1];
-                } else if(pc == '.'){
-                    dp[i][j] = dp[i - 1][j - 1];
-                } if (pc == '*') {
-                    // aa  a*
-                    // b   ba*
-                    // ba  ba*
-                    dp[i][j] = dp[i][j - 1] || j > 2 && dp[i][j - 2] || dp[i - 1][j - 1] && (p.charAt(j - 2) == sc||p.charAt(j - 2) =='.');
+                    if (j >= 2 && p.charAt(lastJ - 1) == '*' && dp[lastI][lastJ - 2]) {
+                        dp[i][j] = true;
+                    } else {
+                        dp[i][j] = dp[lastI][lastJ];
+                    }
+                } else if (pc == '.') {
+                    dp[i][j] = dp[lastI][lastJ];
+                } else if (pc == '*') {
+                    boolean last2Eq = (p.charAt(j - 2) == sc || p.charAt(j - 2) == '.');
+                    // aa aa*
+                    // a ac*
+                    // a .*
+                    dp[i][j] = dp[i][lastJ] // ca ca*
+                            || dp[lastI][j] && last2Eq // a ac*
+                            || j >= 2 && dp[i][j - 2] //  a  aa*
+                            || dp[lastI][lastJ] && last2Eq;
                 } else {
                     dp[i][j] = false;
                 }
-                System.out.println(String.format("%s %s = %s ", s.substring(0, i), p.substring(0, j), dp[i][j]));
+//                System.out.println(String.format("%s %s = %s ", s.substring(0, i), p.substring(0, j), dp[i][j]));
             }
         }
         return dp[sLen][pLen];
@@ -74,9 +84,10 @@ public class IsMatch_10 {
 
     public static void main(String[] args) {
         IsMatch_10 x = new IsMatch_10();
-//        System.out.println(x.isMatch("aa", "a*"));
+        System.out.println(x.isMatch("aaaa", "a*"));
 //        System.out.println(x.isMatch("abccd", "a*bc.d"));
 //        System.out.println(x.isMatch("ab",".*"));
-        System.out.println(x.isMatch("aab","c*a*b"));
+//        System.out.println(x.isMatch("aab", "c*a*b"));
+//        System.out.println(x.isMatch("missi", "mis*"));
     }
 }

@@ -99,7 +99,7 @@ public class Epoll {
         int efd = epoll_create(1);
         for (int fd = 0; fd < fds.length; fd++) {
             // 对红黑树进行操作,添加所有socket节点
-            epoll_ctl(efd, 1, fd, new EpollEvent());
+            epoll_ctl(efd, EP_INSERT, fd, new EpollEvent());
         }
         EpollEvent[] events = new EpollEvent[maxEvents];
         while (true) {

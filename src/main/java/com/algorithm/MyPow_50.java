@@ -61,6 +61,8 @@ public class MyPow_50 {
 
     public static void main(String[] args) {
 //        System.out.println(Integer.MIN_VALUE);
-        System.out.println(new MyPow_50().myPow(2, -2147483648));
+        System.out.println(new MyPow_50().myPow(1, -2147483648));
+
+        System.out.println(-(-2147483648));
     }
 }
