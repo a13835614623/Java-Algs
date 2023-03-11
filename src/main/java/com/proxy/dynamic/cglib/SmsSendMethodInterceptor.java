@@ -8,7 +8,6 @@ import java.lang.reflect.Method;
  * @description GCLIB拦截器
  * @author 张子宽
  * @date 2022/02/20
- * @copyright 广州瑞云网络科技有限公司
  */
 public class SmsSendMethodInterceptor implements MethodInterceptor {
 

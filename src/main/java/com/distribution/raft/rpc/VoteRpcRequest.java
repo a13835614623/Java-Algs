@@ -3,7 +3,7 @@ package com.distribution.raft.rpc;
  * @description 投票请求
  * @author 张子宽
  * @date 2022/02/27
- * @copyright 广州瑞云网络科技有限公司
+ * @copyright 
  */
 public class VoteRpcRequest extends AbstractRpcRequest<VoteRpcResponse>{
 

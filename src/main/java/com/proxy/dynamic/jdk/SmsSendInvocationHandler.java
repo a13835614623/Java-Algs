@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
  * @description SmsSendInvocationHanlder
  * @author 张子宽
  * @date 2022/02/20
- * @copyright 广州瑞云网络科技有限公司
+ * @copyright 
  */
 public class SmsSendInvocationHandler implements InvocationHandler {
 

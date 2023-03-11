@@ -7,7 +7,7 @@ import java.util.List;
  * @description ZFC
  * @author 张子宽
  * @date 2022/06/19
- * @copyright 广州瑞云网络科技有限公司
+ * @copyright 
  */
 public class ZgcObject {
     /**

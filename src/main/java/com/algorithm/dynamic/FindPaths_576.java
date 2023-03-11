@@ -11,7 +11,7 @@ package com.algorithm.dynamic;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  * @author 张子宽
  * @date 2021/08/15
- * @copyright 广州瑞云网络科技有限公司
+ * @copyright 
  */
 public class FindPaths_576 {
     /**

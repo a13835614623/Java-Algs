@@ -5,7 +5,7 @@ import com.distribution.raft.NodeType;
  * @description 抽象节点
  * @author 张子宽
  * @date 2022/03/05
- * @copyright 广州瑞云网络科技有限公司
+ * @copyright 
  */
 public class AbstractNode implements INode{
 

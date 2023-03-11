@@ -4,7 +4,7 @@ package com.distribution.raft.rpc;
  * @description AbstractRpcRequest
  * @author 张子宽
  * @date 2022/02/27
- * @copyright 广州瑞云网络科技有限公司
+ * @copyright 
  */
 public class AbstractRpcRequest<T extends RpcResponse> implements RpcRequest<T>{
 
