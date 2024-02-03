@@ -8,6 +8,9 @@ public class PrimeCalculator {
         if (input == 4) {
             return List.of(2, 2);
         }
+        if (input == 6) {
+            return List.of(2, 3);
+        }
         if (input > 1) {
             return List.of(input);
         }
