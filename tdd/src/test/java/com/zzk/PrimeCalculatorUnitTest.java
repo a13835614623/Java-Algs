@@ -9,9 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class PrimeCalculatorUnitTest {
 
     @Test
-    public void test(){
-        assertEquals(List.of(),PrimeCalculator.calc(1));
-        assertEquals(List.of(2),PrimeCalculator.calc(2));
-        assertEquals(List.of(3),PrimeCalculator.calc(3));
+    public void test() {
+        assertEquals(List.of(), PrimeCalculator.calc(1));
+        assertEquals(List.of(2), PrimeCalculator.calc(2));
+        assertEquals(List.of(3), PrimeCalculator.calc(3));
+        assertEquals(List.of(2, 2), PrimeCalculator.calc(4));
     }
 }
