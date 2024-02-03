@@ -17,5 +17,12 @@ class PrimeCalculatorUnitTest {
         assertEquals(List.of(2,3), PrimeCalculator.calc(6));
         assertEquals(List.of(2,2,2), PrimeCalculator.calc(8));
         assertEquals(List.of(3,3), PrimeCalculator.calc(9));
+        assertEquals(List.of(2,5), PrimeCalculator.calc(10));
+        assertEquals(List.of(11), PrimeCalculator.calc(11));
+        assertEquals(List.of(2,2,3), PrimeCalculator.calc(12));
+        assertEquals(List.of(3,5), PrimeCalculator.calc(15));
+        assertEquals(List.of(2,2,2,2), PrimeCalculator.calc(16));
+        assertEquals(List.of(2,3,3), PrimeCalculator.calc(18));
+        assertEquals(List.of(2,3,3,3,41), PrimeCalculator.calc(2*3*3*3*41));
     }
 }

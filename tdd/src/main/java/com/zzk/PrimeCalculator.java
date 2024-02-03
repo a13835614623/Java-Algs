@@ -11,17 +11,11 @@ public class PrimeCalculator {
             return result;
         }
         for (int i = 2; i <= input; i++) {
-            int rest = input;
-            if (rest % i != 0 || rest <= i) {
+            if (input % i != 0 || input <= i) {
                 continue;
             }
             result.add(i);
-            rest = rest / i;
-            while (rest % i == 0 && rest > i) {
-                result.add(rest / i);
-                rest /= i;
-            }
-            result.add(rest);
+            result.addAll(calc(input / i));
             return result;
         }
         result.add(input);
