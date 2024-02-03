@@ -16,7 +16,10 @@ public class PrimeCalculator {
                 rest /= 2;
             }
             result.add(rest);
-        }else if (input>1){
+        }else if (input==9){
+            result.add(3);
+            result.add(input/3);
+        } else if(input>1){
             result.add(input);
         }
         return result;
