@@ -3,22 +3,18 @@ package com.zzk;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class PrimeCalculator {
     public static List<Integer> calc(int input) {
-        List<Integer> result = new ArrayList<>();
-        for (int i = 2; i <= input; i++) {
-            if (input % i != 0) {
-                continue;
-            }
-            result.add(i);
-            result.addAll(calc(input / i));
-            return result;
-        }
-        if (input > 1) {
-            result.add(input);
-        }
-        return result;
+        return IntStream.range(2, input)
+                .filter(x -> input % x == 0)
+                .mapToObj(i -> Stream.concat(Stream.of(i), calc(input / i).stream()))
+                .findFirst()
+                .map(stream -> stream.collect(Collectors.toList()))
+                .orElseGet(() -> input > 1 ? List.of(input) : List.of());
     }
 }
