@@ -12,5 +12,6 @@ class PrimeCalculatorUnitTest {
     public void test(){
         assertEquals(List.of(),PrimeCalculator.calc(1));
         assertEquals(List.of(2),PrimeCalculator.calc(2));
+        assertEquals(List.of(3),PrimeCalculator.calc(3));
     }
 }
